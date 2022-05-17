@@ -3,8 +3,21 @@ const passport = require('passport')
 const config = require('../config/config')
 const router = express.Router()
 
+// router.get('/login',
+//   passport.authenticate('azure_ad_oauth2'));
+
+// router.get('/openid/return', 
+//   passport.authenticate('azure_ad_oauth2', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/home');
+//   });
+
+//both of the below route solutions create the same problem
+
 router.get('/login',
   function(req, res, next) {
+    // console.log(req, config)
     passport.authenticate('azuread-openidconnect', 
       { 
         response: res,                      
@@ -27,21 +40,23 @@ router.get('/openid/return',
         failureRedirect: '/'  
       }
     )(req, res, next);
+   
   },
   function(req, res) {
-    console.log('We received a return from AzureAD.');
     res.redirect('/home');
   });
 
 router.post('/openid/return',
   function(req, res, next) {
-    console.log(req.session)
+
+    
     passport.authenticate('azuread-openidconnect', 
       { 
         response: res,    
         failureRedirect: '/'  
       }
     )(req, res, next);
+
   },
   function(req, res) {
     console.log('We received a return from AzureAD.');
@@ -49,12 +64,13 @@ router.post('/openid/return',
   });
 
 
-router.get('/logout', function(req, res){
-  req.session.destroy(function(err) {
-    req.logOut();
-    res.redirect(config.destroySessionUrl);
-  });
-});
+// router.get('/logout', function(req, res){
+//   req.session.destroy(function(err) {
+//     req.logOut();
+//     res.redirect(config.destroySessionUrl);
+//     // res.redirect('/');
+//   });
+// });
 
 
 // alt code from azure ad passport strategy which creates the same problem
@@ -63,9 +79,8 @@ router.get('/logout', function(req, res){
 // router.get('/login', 
 //   passport.authenticate('azuread-openidconnect', { failureRedirect: '/' }),
 //   function(req, res) {
-//     console.log('function called')
 //     log.info('Login was called in the Sample');
-//     res.redirect('/home');
+//     res.redirect('/');
 // });
 
 // function regenerateSessionAfterAuthentication(req, res, next) {
@@ -91,10 +106,10 @@ router.get('/logout', function(req, res){
 //     res.redirect('/home');
 //   });
 
-// router.get('/logout', function(req, res){
-//   req.logout();
-//   res.redirect('/');
-// });
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 
 module.exports = router

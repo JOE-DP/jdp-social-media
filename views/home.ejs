@@ -4,12 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7a2d0639a4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css">
     <title>JDP Social Media Home Page</title>
 </head>
 <body>
-    <a href="/auth/logout"><h1>Home Page</h1></a>
 
-    <a href="/home"><h2>req check</h2></a>
+<header>
+    <h1>JDP Media Home Page.</h1>
+    <a href="/auth/logout"><button class="logout-button">Logout</button></a>
+    <a href="/home/postPage"><button>Add Post</button></a>    
+</header>
+
+<h2>Add a post, how are you feeling today?</h2>
+<form action="/home/addPost" method="POST">
+    <input type="text" name="postItem" placeholder="add a post to the app">
+    <input type="submit" value="Add Post">
+</form>
+
+<% for(let i = 0; i < post.length; i++){ %>
+    <section class="post-section" data-id='<%= post[i]._id %>'>
+    <h3><%= post[i].displayName %></h3>
+    <p><%= post[i].postContent %> </p>
+    <i class="fa-solid fa-dumpster delete-button"></i>
+    <br><br>
+    <p class="timestamp"><%= post[i].createdAt %></p>
+    </section>
+<% } %>
+
     
 </body>
+
+<script src="../main.js" defer></script>
 </html>

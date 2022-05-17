@@ -1,5 +1,3 @@
-require('dotenv').config({path: './config/.env'})
-
 const http = require('http')
 const express = require('express')
 let app = express()
@@ -13,6 +11,13 @@ const indexroutes = require('./routes/indexroutes')
 const homeroutes = require('./routes/homeroutes')
 const authroutes = require('./routes/authroutes')
 
+app.use(express.static('public'))
+
+require('dotenv').config({path: './config/.env'})
+
+//passport config
+
+require('./config/passport')(passport)
 
 
 connectDB()
@@ -25,7 +30,7 @@ app.use(express.json())
 // Sessions
 app.use(
     session({
-      secret: 'akeyboard cat',
+      secret: 'keyboard cat',
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
@@ -34,9 +39,6 @@ app.use(
 
 
 
-//passport config
-
-require('./config/passport')(passport)
 
 // Passport middleware
 app.use(passport.initialize())
