@@ -17,15 +17,18 @@
 
 <header>
     <h1>JDP Media Home Page.</h1>
+    <h2>You are logged in as: <%= name %> </h2>
     <a href="/auth/logout"><button class="logout-button">Logout</button></a>
     <a href="/home/postPage"><button>Add Post</button></a>    
 </header>
 
-<h2>Add a post, how are you feeling today?</h2>
+<!-- comment below if want post option on home page -->
+
+<!-- <h2>Add a post, how are you feeling today?</h2>
 <form action="/home/addPost" method="POST">
     <input type="text" name="postItem" placeholder="add a post to the app">
     <input type="submit" value="Add Post">
-</form>
+</form> -->
 
 <% for(let i = 0; i < post.length; i++){ %>
     <section class="post-section" data-id='<%= post[i]._id %>'>

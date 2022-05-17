@@ -21,15 +21,24 @@ button{
     color: rgb(236, 245, 246);
 }
 
-h1, h3{
+.login-button{
+    background-color: rgb(34, 44, 63);
+    color: rgb(236, 245, 246);
+}
+
+h1, h2, h3{
     color: rgb(34, 44, 63);
     font-size: 3.5rem;
     font-weight: bold;
     text-align: center;
+    margin-top: 2%;
 }
 
-h3{
-    text-align: left;
+h3, h2{
+    margin: 1% 0;
+    font-size: 2rem; 
+}
+h2{
     font-size: 2rem; 
 }
 
@@ -41,20 +50,28 @@ p{
     font-size: 1rem;
 }
 
-.fa-dumpster{
+.fa-dumpster {
     text-align: center;
     color: rgb(251, 72, 66);
     font-size: 2rem;
     margin-left: 3%;
 }
 
-.post-section{
+.post-section, .post-submit-section{
     border: 1px solid black;
     border-radius: 5px;
-    width: fit-content;
     padding: 0.5%;
     width: 80%;
     margin: 1%;
+}
+
+.post-submit-section{
+    width: fit-content;
+    padding: 2%;
+}
+
+.text-form{
+    width: 75%;
 }
 
 input{

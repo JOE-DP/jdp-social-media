@@ -4,9 +4,11 @@ let Post = require('../models/posts')
 module.exports = {
 
     homeGet: async (req, res) => {
-        console.log(req.user)
-       Post.find()
-        .then(data => res.render('home.ejs', {post: data}))
+        let userName = await req.user.displayName
+        Post.find()
+        .then(data => {
+            data = data.reverse()
+            res.render('home.ejs', {post: data, name: req.user.displayName})})
     
        
     }, 
@@ -23,9 +25,9 @@ module.exports = {
     }, 
     deletePost: async (req, res) => {
         await Post.findByIdAndDelete({_id: req.body.deleteItemId})
-        res.json()
-       
-            
-        
+        res.json()        
+    }, 
+    postPage: async (req, res) => {
+        res.render('post.ejs')       
     }
     }
