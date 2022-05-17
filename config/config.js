@@ -5,7 +5,7 @@ exports.creds = {
   
     responseMode: 'form_post', 
   
-    redirectUrl: 'http://localhost:5005/auth/openid/return', 
+    redirectUrl: 'https://jdp-socialmedia.herokuapp.com/auth/openid/return', 
   
     allowHttpForRedirectUrl: true,
   
@@ -28,7 +28,7 @@ exports.creds = {
     clockSkew: null,
   };
   
-  exports.destroySessionUrl = 'http://localhost:5005';
+  exports.destroySessionUrl = 'https://jdp-socialmedia.herokuapp.com/';
   
   exports.useMongoDBSessionStore = false;
   
