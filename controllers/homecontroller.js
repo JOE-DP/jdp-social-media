@@ -31,6 +31,20 @@ module.exports = {
         }
         res.json()        
     }, 
+    likePost: async (req, res) => {
+        
+            await Post.findByIdAndUpdate({_id: req.body.likeItemId}, {likes++})
+        
+        res.json()  
+        
+        // body: JSON.stringify({'likeItemId': likeItem})
+
+// const filter = { name: 'Jean-Luc Picard' };
+// const update = { age: 59 };
+
+// `doc` is the document _before_ `update` was applied
+// let doc = await Character.findOneAndUpdate(filter, update);
+    }, 
     postPage: async (req, res) => {
         res.render('post.ejs')       
     }
