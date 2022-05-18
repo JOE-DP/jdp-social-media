@@ -19,6 +19,7 @@ module.exports = {
             microsoftId: req.user.microsoftId,
             displayName: req.user.displayName,
             postContent: req.body.postItem,
+            createdAt: String(new Date())
             
         })
         res.redirect('/home')
@@ -34,10 +35,7 @@ module.exports = {
     likePost: async (req, res) => {
             
             let likeNum = await Post.findById({_id: req.body.likeItemId})
-            console.log(likeNum)
             likeNum = Number(likeNum.likes)
-            console.log(likeNum)
-            console.log(likeNum + 1)
             likeNum = likeNum + 1
             await Post.findByIdAndUpdate({_id: req.body.likeItemId}, {likes: likeNum})
         
