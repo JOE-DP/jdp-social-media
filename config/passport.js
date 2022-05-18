@@ -2,7 +2,7 @@ const OIDCStrategy = require('passport-azure-ad').OIDCStrategy
 
 const mongoose = require('mongoose')
 const config = require('../config/config')
-const User = require('../models/User')
+const User = require('../models/user')
 
 
 module.exports = function (passport) {
