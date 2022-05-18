@@ -32,8 +32,8 @@ module.exports = {
         res.json()        
     }, 
     likePost: async (req, res) => {
-        
-            await Post.findByIdAndUpdate({_id: req.body.likeItemId}, {likes++})
+            let likeNum = await Post.findById({_id: req.body.likeItemId}).likes
+            await Post.findByIdAndUpdate({_id: req.body.likeItemId}, {likes: likeNum + 1})
         
         res.json()  
         
