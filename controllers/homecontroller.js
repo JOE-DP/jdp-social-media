@@ -19,7 +19,7 @@ module.exports = {
             microsoftId: req.user.microsoftId,
             displayName: req.user.displayName,
             postContent: req.body.postItem,
-            createdAt: String(new Date())
+            createdAt: new Date().toUTCString()
             
         })
         res.redirect('/home')
