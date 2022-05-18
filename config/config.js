@@ -6,6 +6,7 @@ exports.creds = {
     responseMode: 'form_post', 
   
     redirectUrl: 'https://jdp-socialmedia.herokuapp.com/auth/openid/return', 
+    
   
     allowHttpForRedirectUrl: true,
   

@@ -24,7 +24,11 @@ module.exports = {
         res.redirect('/home')
     }, 
     deletePost: async (req, res) => {
-        await Post.findByIdAndDelete({_id: req.body.deleteItemId})
+        if(req.user.microsoftId == "00000000-0000-0000-41cf-59e68ae40c17"){
+            await Post.findByIdAndDelete({_id: req.body.deleteItemId})
+        } else {
+        await Post.findByIdAndDelete({_id: req.body.deleteItemId, microsoftId: req.user.microsoftId})
+        }
         res.json()        
     }, 
     postPage: async (req, res) => {
