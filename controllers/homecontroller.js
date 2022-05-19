@@ -4,7 +4,6 @@ let Post = require('../models/posts')
 module.exports = {
 
     homeGet: async (req, res) => {
-        let userName = await req.user.displayName
         Post.find()
         .then(data => {
             data = data.reverse()
